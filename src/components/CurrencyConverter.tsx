@@ -359,7 +359,7 @@ const CurrencyConverter = () => {
         </Button>
         {lastUpdated && !isOffline && (
           <p className="text-xs text-muted-foreground">
-            Última actualización: {lastUpdated.toLocaleTimeString('es-CL')}
+            Última actualización: {lastUpdated.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' })} ({lastUpdated.toLocaleDateString('es-CL')})
           </p>
         )}
       </div>
