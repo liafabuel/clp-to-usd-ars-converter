@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { RefreshCw, ArrowDown, AlertCircle, X, Settings, WifiOff } from 'lucide-react';
+import { RefreshCw, ArrowDown, AlertCircle, X, Settings, WifiOff, ChevronDown } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -32,7 +32,7 @@ const CurrencyConverter = () => {
   const [isOffline, setIsOffline] = useState(false);
   const [offlineTimestamp, setOfflineTimestamp] = useState<string | null>(null);
   
-  // ARS adjustment settings
+  // ARS adjustment settings - closed by default
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [arsAdjustmentEnabled, setArsAdjustmentEnabled] = useState(() => {
     const saved = localStorage.getItem(SETTINGS_KEY);
@@ -181,54 +181,6 @@ const CurrencyConverter = () => {
         </div>
       )}
 
-      {/* Settings Collapsible */}
-      <Collapsible open={settingsOpen} onOpenChange={setSettingsOpen} className="mb-4">
-        <CollapsibleTrigger asChild>
-          <Button
-            variant="ghost"
-            className="w-full justify-between text-muted-foreground hover:text-primary hover:bg-primary/10"
-          >
-            <span className="flex items-center gap-2">
-              <Settings className="w-4 h-4" />
-              Configuración ARS
-            </span>
-            <span className="text-xs">
-              {arsAdjustmentEnabled ? `Ajuste: x${arsMultiplier}` : 'Desactivado'}
-            </span>
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="mt-2">
-          <div className="glass-card p-4 space-y-4">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="ars-adjustment" className="text-sm text-foreground">
-                Multiplicador de Ajuste
-              </Label>
-              <Switch
-                id="ars-adjustment"
-                checked={arsAdjustmentEnabled}
-                onCheckedChange={setArsAdjustmentEnabled}
-              />
-            </div>
-            {arsAdjustmentEnabled && (
-              <div className="space-y-2">
-                <Label htmlFor="multiplier" className="text-xs text-muted-foreground">
-                  Factor (ej: 2.0 para Dólar Blue/Tarjeta)
-                </Label>
-                <Input
-                  id="multiplier"
-                  type="text"
-                  inputMode="decimal"
-                  value={arsMultiplier}
-                  onChange={handleMultiplierChange}
-                  className="input-glass text-lg font-semibold"
-                  placeholder="2.0"
-                />
-              </div>
-            )}
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
-
       {/* Input Card */}
       <div className="glass-card p-6 mb-4 glow-effect">
         <div className="flex items-center justify-between mb-4">
@@ -345,6 +297,56 @@ const CurrencyConverter = () => {
           </div>
         </div>
       )}
+
+      {/* Advanced Settings Accordion - Below results */}
+      <Collapsible open={settingsOpen} onOpenChange={setSettingsOpen} className="mt-6">
+        <CollapsibleTrigger asChild>
+          <button className="w-full flex items-center justify-between p-3 rounded-lg bg-secondary/30 border border-border/50 hover:bg-secondary/50 transition-colors text-sm">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <Settings className="w-4 h-4" />
+              Ajustes avanzados de moneda
+            </span>
+            <div className="flex items-center gap-2">
+              {arsAdjustmentEnabled && (
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-ars/20 text-ars font-medium">
+                  x{arsMultiplier}
+                </span>
+              )}
+              <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${settingsOpen ? 'rotate-180' : ''}`} />
+            </div>
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-2">
+          <div className="p-4 rounded-lg bg-secondary/20 border border-border/30 space-y-4">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="ars-adjustment" className="text-sm text-foreground">
+                Multiplicador de Ajuste ARS
+              </Label>
+              <Switch
+                id="ars-adjustment"
+                checked={arsAdjustmentEnabled}
+                onCheckedChange={setArsAdjustmentEnabled}
+              />
+            </div>
+            {arsAdjustmentEnabled && (
+              <div className="space-y-2">
+                <Label htmlFor="multiplier" className="text-xs text-muted-foreground">
+                  Factor (ej: 2.0 para Dólar Blue/Tarjeta)
+                </Label>
+                <Input
+                  id="multiplier"
+                  type="text"
+                  inputMode="decimal"
+                  value={arsMultiplier}
+                  onChange={handleMultiplierChange}
+                  className="input-glass text-lg font-semibold"
+                  placeholder="2.0"
+                />
+              </div>
+            )}
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
 
       {/* Refresh Button */}
       <div className="mt-6 flex flex-col items-center gap-2">
