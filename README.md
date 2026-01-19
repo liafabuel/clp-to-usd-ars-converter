@@ -22,7 +22,7 @@ Este proyecto nació de la necesidad práctica de gestionar gastos durante un vi
 
 1. Clonar el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/chile-trip-calc.git](https://github.com/tu-usuario/chile-trip-calc.git)
+   git clone [https://github.com/tu-usuario/clp-to-usd-ars-converter.git](https://github.com/tu-usuario/clp-to-usd-ars-converter.git)
 2. Instalar dependencias:
    ```bash
    npm install
