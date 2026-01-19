@@ -2,6 +2,10 @@
 
 Una aplicación web progresiva (PWA) diseñada para viajeros argentinos en Chile, enfocada en la velocidad de uso y la resiliencia en condiciones de baja conectividad.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://conversor-chile-ars.vercel.app/)
+
+**Live Demo:** [https://conversor-chile-ars.vercel.app/](https://conversor-chile-ars.vercel.app/)
+
 ## 🚀 Propósito del Proyecto
 Este proyecto nació de la necesidad práctica de gestionar gastos durante un viaje a Chile, donde la brecha cambiaria de Argentina (Dólar Blue/Tarjeta) y la posible falta de roaming exigen una herramienta que sea más que un simple conversor.
 
@@ -39,5 +43,9 @@ Para utilizar esta herramienta en tu teléfono como una aplicación nativa, sigu
 3. **Abre la URL en tu móvil:** Utiliza **Safari** en iOS o **Chrome** en Android.
 4. **Instala la App:** Selecciona la opción **"Agregar a la pantalla de inicio"** en el menú de compartir o configuración de tu navegador.
 
+---
+## 🔗 Enlaces del Proyecto
+- **Sitio en vivo:** [Chile Trip Calc](https://conversor-chile-ars.vercel.app/)
+- **Repositorio:** [GitHub](https://github.com/liafabuel/clp-to-usd-ars-converter)
 ---
 Desarrollado con ❤️ por una **Ingeniera en Sistemas** para facilitar los viajes por la cordillera.
